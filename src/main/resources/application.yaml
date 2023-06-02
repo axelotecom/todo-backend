@@ -1,0 +1,57 @@
+server:
+  port: 8074
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+logging:
+  level:
+    root: INFO
+    org.springframework.web: ERROR
+    com.axelote.adapter: ERROR
+    com.axelote.demo: ERROR
+    org.hibernate: ERROR
+axelote:
+  provider-url: http://localhost:8080
+  internal-auth-token:
+  transactions:
+    ids-generated-at-once: 100
+  datasource:
+    connections-cleanup-time: 45000
+    max-connection-time: 30000
+  paths:
+    root: api/
+    command: /command
+    transactionIds: generate-transaction-ids
+  exceptions:
+    printToResponse: true
+    defaultMessage: "Exception occurred, identifier {}"
+  cache:
+    awaiting: 100
+    maxAwaiting: 500
+    size: 10000
+    expireAfter: 86400000
+  redis:
+    hostName: localhost
+    port: 6379
+    password:
+    database: 0
+    connectionTimeout: 60000
+    readTimeout: 60000
+    maxTotal: 128
+    maxIdle: 128
+    minIdle: 16
+    testOnBorrow: true
+    testOnReturn: true
+    testWhileIdle: true
+    numTestsPerEvictionRun: 3
+    blockWhenExhausted: true
+credentials:
+  username: axelote
+  password: axelote
+cors:
+  origin: "*"
